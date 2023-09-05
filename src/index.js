@@ -43,7 +43,10 @@ async function searchImages(query) {
       console.log(dataTotalHits);
       if (hitsShown < dataTotalHits) {
         loadMoreButton.classList.replace('load-more-hidden', 'load-more');
-        buttonElement.classList.replace('buttun-submit','buttun-submit-hidden');
+        buttonElement.classList.replace('buttun-submit', 'buttun-submit-hidden');
+         return Notiflix.Notify.info(
+           `Hooray! We found ${dataTotalHits} images.`
+         );
       } else {
         loadMoreButton.classList.replace('load-more', 'load-more-hidden');
         return Notiflix.Notify.info(
