@@ -3,9 +3,14 @@ import { default as axios } from 'axios';
 const formElement = document.querySelector('.search-form');
 const buttonElement = document.querySelector('.buttun-submit');
 const conteinerElements = document.querySelector('.gallery');
+const loadMoreButton = document.querySelector('.js-load-more');
+// console.log(loadMoreButton);
 
 const BASE_URL = 'https://pixabay.com/api/';
 const API_KEY = '39227320-d50c4892bd50959f664d77ea8';
+let pageNumber = 1;
+let hitsShown = 0;
+let searchValue = '';
 
 async function searchImages(query) {
   const options = {
@@ -15,24 +20,30 @@ async function searchImages(query) {
       image_type: 'photo',
       orientation: 'horizontal',
       safesearch: true,
-      page: 1,
+      page: pageNumber,
       per_page: 40,
     },
   };
 
   try {
     const response = await axios.get(BASE_URL, options);
-    console.log(response.data);
+    console.log(response);
+    const dataHits = response.data.hits;
+    hitsShown += dataHits.length;
+    const dataTotalHits = response.data.totalHits;
 
-    const dataImg = response.data.hits;
-
-    if (dataImg.length === 0) {
+    if (dataHits.length === 0) {
       return alert(
         'Sorry, there are no images matching your search query. Please try again.'
       );
     } else {
-       
-     conteinerElements.insertAdjacentHTML('beforeend', createMurcup(dataImg));
+      conteinerElements.insertAdjacentHTML('beforeend', createMurcup(dataHits));
+      console.log(dataTotalHits);
+      if (hitsShown < dataTotalHits) {
+        loadMoreButton.classList.replace('load-more-hidden', 'load-more');
+      } else {
+        loadMoreButton.classList.replace('load-more', 'load-more-hidden');
+      }
     }
   } catch (error) {
     console.log(error);
@@ -41,14 +52,17 @@ async function searchImages(query) {
 
 formElement.addEventListener('submit', event => {
   event.preventDefault();
-  const searchValue = event.target[0].value;
-    searchImages(searchValue);
-    
+  searchValue = event.target[0].value;
+  searchImages(searchValue);
+});
 
+formElement.addEventListener('change', () => {
+  conteinerElements.innerHTML = '';
+  loadMoreButton.classList.replace('load-more', 'load-more-hidden');
 });
 
 function createMurcup(images) {
-  console.log(images);
+  //   console.log(images);
   const galleryHTML = images.map(
     image =>
       `
@@ -78,3 +92,10 @@ function createMurcup(images) {
   return galleryHTML;
 }
 
+loadMoreButton.addEventListener('click', handlerLoadMore);
+
+function handlerLoadMore() {
+  pageNumber++;
+  searchImages(searchValue);
+
+}
