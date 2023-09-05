@@ -46,7 +46,7 @@ async function searchImages(query) {
         buttonElement.classList.replace('buttun-submit','buttun-submit-hidden');
       } else {
         loadMoreButton.classList.replace('load-more', 'load-more-hidden');
-        return Notiflix.Notify.failure(
+        return Notiflix.Notify.info(
           "We're sorry, but you've reached the end of search results."
         );
       }
@@ -71,9 +71,7 @@ function createMurcup(images) {
   //   console.log(images);
   const galleryHTML = images.map(
     image =>
-      `
-
-      <div class="photo-card">
+      `<div class="photo-card">
   <img src="${image.webformatURL}" alt="${image.tags}" loading="lazy" class = "img" />
   <div class="info">
     <p class="info-item">
@@ -89,10 +87,7 @@ function createMurcup(images) {
       <b>Downloads:${image.downloads}</b>
     </p>
   </div>
-</div>;
-
-
-    
+</div>
 `
   );
   return galleryHTML;
@@ -101,7 +96,7 @@ function createMurcup(images) {
 loadMoreButton.addEventListener('click', handlerLoadMore);
 
 function handlerLoadMore() {
-  pageNumber++;
+  pageNumber ++;
   searchImages(searchValue);
 
 }
