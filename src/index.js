@@ -1,4 +1,6 @@
 import { default as axios } from 'axios';
+import Notiflix from 'notiflix';
+
 
 const formElement = document.querySelector('.search-form');
 const buttonElement = document.querySelector('.buttun-submit');
@@ -33,7 +35,7 @@ async function searchImages(query) {
     const dataTotalHits = response.data.totalHits;
 
     if (dataHits.length === 0) {
-      return alert(
+      return Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
       );
     } else {
@@ -41,8 +43,12 @@ async function searchImages(query) {
       console.log(dataTotalHits);
       if (hitsShown < dataTotalHits) {
         loadMoreButton.classList.replace('load-more-hidden', 'load-more');
+        buttonElement.classList.replace('buttun-submit','buttun-submit-hidden');
       } else {
         loadMoreButton.classList.replace('load-more', 'load-more-hidden');
+        return Notiflix.Notify.failure(
+          "We're sorry, but you've reached the end of search results."
+        );
       }
     }
   } catch (error) {
