@@ -24,6 +24,7 @@ padding-top: 70px;
     padding: 5px;
     background-color: cornflowerblue;
     border: 2px solid cornflowerblue;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     border-radius: 3px;
     margin: auto;
     margin-bottom: 50px;
@@ -48,6 +49,7 @@ padding-top: 70px;
     padding: 5px;
     background-color: cornflowerblue;
     border: 2px solid cornflowerblue;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     border-radius: 3px;
     margin: auto;
     margin-bottom: 50px;
@@ -58,12 +60,7 @@ padding-top: 70px;
     
 }
 
-// .input-serch:focus{
-//     border-style:none;
-//     border: 2px solid rgb(75, 85, 104);
-//     // background-color: rgb(75, 85, 104);
 
-// }
 
 .input-serch {
     border-style: none;
@@ -75,21 +72,30 @@ padding-top: 70px;
     display: flex;
     margin: auto;
     margin-bottom: 35px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     &:hover
     &:focus{
         border: 2px solid rgb(75, 85, 104);
     }
 }
 
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    gap: 20px;
+    list-style: none;
+}
+
 .photo-card{
     display: flex;
+    justify-content: center;
+    padding: 5px;
     width: 550px;
-    height: 400px;
+    height: 550;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: rgba(0, 0, 0, 0.1);
-     padding: 5px;
-    list-style: none;
-    display: flex;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    
         flex-wrap: wrap;
         justify-content: center;
         list-style: none;
@@ -101,15 +107,15 @@ padding-top: 70px;
     display: flex;
     justify-content: space-around;
     gap:10px;
-    
-   
-    
+    font-weight: bold;
+     
 }
 
 .img{
-    width: 500px;
+    width: 100%;
+    height: 500px;
     
 }
 
 
-   
+
