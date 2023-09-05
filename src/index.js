@@ -96,7 +96,7 @@ function createMurcup(images) {
 loadMoreButton.addEventListener('click', handlerLoadMore);
 
 function handlerLoadMore() {
-  pageNumber ++;
+  pageNumber  + 1;
   searchImages(searchValue);
 
 }
