@@ -101,5 +101,18 @@ loadMoreButton.addEventListener('click', handlerLoadMore);
 function handlerLoadMore() {
   pageNumber += 1;
   searchImages(searchValue);
+  
+  slowScrollpage();
 
+}
+
+function slowScrollpage() {
+  const { height: cardHeight } = document
+    .querySelector('.gallery')
+    .firstElementChild.getBoundingClientRect();
+
+  window.scrollTo({
+    top: window.scrollY + cardHeight * 2,
+    behavior: 'smooth',
+  });
 }
