@@ -35,15 +35,17 @@ async function searchImages(query) {
     const dataTotalHits = response.data.totalHits;
 
     if (dataHits.length === 0) {
+       
       return Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
       );
+     
     } else {
       conteinerElements.insertAdjacentHTML('beforeend', createMurcup(dataHits));
       console.log(dataTotalHits);
       if (hitsShown < dataTotalHits) {
         loadMoreButton.classList.replace('load-more-hidden', 'load-more');
-        buttonElement.classList.replace('buttun-submit', 'buttun-submit-hidden');
+        
          return Notiflix.Notify.info(
            `Hooray! We found ${dataTotalHits} images.`
          );
