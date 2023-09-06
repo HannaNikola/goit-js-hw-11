@@ -63,6 +63,9 @@ async function searchImages(query) {
 
 formElement.addEventListener('submit', event => {
   event.preventDefault();
+  
+  conteinerElements.innerHTML = '';
+  pageNumber += 1;
   searchValue = event.target[0].value;
   searchImages(searchValue);
 });
